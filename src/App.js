@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import GetHoroscope from  "../src/services/Api";
 
 function App() {
+  const [sign, setSign] = useState(null);
+  const handleButtonClick = (sign) => {
+    setSign(sign);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="main"></div>
+      <h1>Know Your Horoscope</h1>
+      <h2>Select Your Sign</h2>
+      {['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'].map((sign) => (
+        <button className ="key-button" key={sign} onClick={() => handleButtonClick(sign)}>{sign}</button>
+      ))}
+      
+        <div>
+          <h3>Horoscope for {sign}</h3>
+          <GetHoroscope sign ={sign}/>
+        </div>
+      
     </div>
   );
 }
