@@ -10,9 +10,9 @@ const GetHoroscope = ({ sign }) => {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': 'f358ddcd4dmsh6d5e410ffaaf0b2p19d50fjsnd305faf037ef',
-                'X-RapidAPI-Host': 'best-daily-astrology-and-horoscope-api.p.rapidapi.com'
-            }
+              'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
+              'X-RapidAPI-Host': process.env.RAPIDAPI_HOST
+          }
         };
         try {
             const response = await fetch(url, options);
