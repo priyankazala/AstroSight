@@ -1,24 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState, useRef } from 'react';
 import './App.css';
-import GetHoroscope from  "../src/services/Api";
+import GetHoroscope from  "../src/services/GetHoroscope";
 
 function App() {
   const [sign, setSign] = useState(null);
-  const handleButtonClick = (sign) => {
-    setSign(sign);
+
+  const myRef = useRef(null);
+  // function scrollToRef(ref) {
+  //   window.scrollTo({
+       
+  //     behavior: 'smooth' // Optional: adds smooth scrolling effect
+  //   });
+  // }
+  const handleClick = (sign) => {
+    setSign(sign)
+    myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start',  offset: { top: 10 } });
+
   };
+  
 
   return (
     <div className="App">
       <div className="main"></div>
       <h1>Know Your Horoscope</h1>
       <h2>Select Your Sign</h2>
-      {['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'].map((sign) => (
-        <button className ="key-button" key={sign} onClick={() => handleButtonClick(sign)}>{sign}</button>
+      <div className = "button-div">
+      {['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'].map((sign) => (
+        <button className ="key-button" key={sign} onClick={() => handleClick(sign)}>{sign}</button>
       ))}
+      </div>
       
-        <div>
-          <h3>Horoscope for {sign}</h3>
+        <div ref={myRef}>
           <GetHoroscope sign ={sign}/>
         </div>
       
