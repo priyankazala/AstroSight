@@ -67,7 +67,7 @@ def main():
         horoscope.append(result)
     
 
-    d_path = '../assets'
+    d_path = '../src/assets'
 
     if not os.path.exists(d_path):
         os.makedirs(d_path, exist_ok=True)
