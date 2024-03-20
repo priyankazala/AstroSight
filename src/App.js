@@ -1,17 +1,27 @@
-import React, {  useState, useRef } from 'react';
+import React, {  useState, useRef, useEffect } from 'react';
 import './App.css';
 import GetHoroscope from  "../src/services/GetHoroscope";
+import axios from 'axios';
 
 function App() {
   const [sign, setSign] = useState(null);
 
   const myRef = useRef(null);
-  // function scrollToRef(ref) {
-  //   window.scrollTo({
-       
-  //     behavior: 'smooth' // Optional: adds smooth scrolling effect
-  //   });
-  // }
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:5000/getdata');
+
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
   const handleClick = (sign) => {
     setSign(sign)
     myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start',  offset: { top: 10 } });

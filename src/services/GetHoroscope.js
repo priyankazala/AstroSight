@@ -8,8 +8,8 @@ const GetHoroscope = ({ sign }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Finding the horoscope for Virgo
-        console.log(data)
+        // Finding the horoscope 
+      
         
         data.forEach(item => {
           const ss = item.sunsign;
@@ -28,10 +28,6 @@ const GetHoroscope = ({ sign }) => {
 
     fetchData();
   }, [sign]);
-
-    useEffect(() => {
-        console.log('Horoscope data updated:', horoscopeData);
-    }, [horoscopeData]);
 
     return (
         <div className='container'>

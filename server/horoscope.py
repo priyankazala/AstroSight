@@ -1,10 +1,15 @@
 import requests
 import json
 from bs4 import BeautifulSoup
+from flask import Flask
 import schedule
 import time
 import json
 import os
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
 
 def get_horoscope(sunsign):
     # Construct the URL for fetching the horoscope
@@ -12,7 +17,7 @@ def get_horoscope(sunsign):
 
     # Send GET request to the URL
     response = requests.get(url)
-    # print(response)
+   
 
     # Check if the request was successful
     if response.status_code == 200:
@@ -22,14 +27,13 @@ def get_horoscope(sunsign):
         
             # Find the element containing the horoscope text
             content = soup.find('div', id='content')
-            # print(content,"raw content")
                 # Check if content is found
             if content:
                     # Extract the text
                     horoscope_text = content.text.strip()
                     # Construct dictionary for JSON
                     horoscope_data = {'sunsign': sunsign, 'horoscope': horoscope_text}
-                    # print(horoscope_data,"json data")
+                    
                     return horoscope_data
             else:
                 return {"error": "Horoscope content not found"}
@@ -38,6 +42,7 @@ def get_horoscope(sunsign):
     else:
         return {"error": f"Failed to fetch data. Status code: {response.status_code}"}
 
+@app.route('/getdata')
 
 def main():
 
@@ -62,7 +67,7 @@ def main():
         horoscope.append(result)
     
 
-    d_path = '../assets'
+    d_path = '../src/assets'
 
     if not os.path.exists(d_path):
         os.makedirs(d_path, exist_ok=True)
@@ -74,16 +79,10 @@ def main():
         json.dump(horoscope, json_file, indent= 4)
 
 
-# Schedule the task for 00:03
-schedule.every().day.at("04:49").do(main)
-
-if __name__ == "__main__":
-    # Loop to continuously check if the scheduled task needs to be executed
-    while True:
-        schedule.run_pending()
-        time.sleep(60)  
-
-
+# # Schedule the task for 00:03
+# schedule.every().day.at("04:49").do(main)
+if __name__ == '__main__':
+    app.run(debug=False)
 
 
 
