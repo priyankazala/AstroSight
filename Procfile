@@ -1,1 +1,1 @@
-web: gunicorn app:horoscope
+web: gunicorn -b 0.0.0.0:$PORT server.horoscope:app
