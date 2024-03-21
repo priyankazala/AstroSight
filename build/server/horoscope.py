@@ -77,11 +77,12 @@ def main():
     # Write JSON data to the file
     with open(file_path, 'w') as json_file:
         json.dump(horoscope, json_file, indent= 4)
-    return horoscope
 
 
+# # Schedule the task for 00:03
+# schedule.every().day.at("04:49").do(main)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 
