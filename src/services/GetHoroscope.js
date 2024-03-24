@@ -1,34 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import ('./GetHoroscope.css')
 
 
-const GetHoroscope = ({ sign }) => {
+const GetHoroscope = ({ sign, allData}) => {
     const [horoscopeData, setHoroscopeData] = useState(null);
-    const[ allData, setallData] = useState(Array);
-
-  useEffect(() => {
-    const fetchData = async () => {
-
-      try {
-        const response = await axios.get("https://gethoroscope.onrender.com/", {
-          mode: 'no-cors'
-        })
-        const jsonData = await response.data;
-        setallData(jsonData)
-        }
-
-     catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  });
-
-
-  useEffect( ()=>{
     
+  useEffect( ()=>{
+
     allData.forEach(item => {
       const ss = item.sunsign;
       const hh = item.horoscope;

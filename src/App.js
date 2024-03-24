@@ -1,4 +1,5 @@
-import React, {  useState, useRef} from 'react';
+import React, {  useState, useRef, useEffect} from 'react';
+import axios from 'axios';
 import './App.css';
 import GetHoroscope from  "../src/services/GetHoroscope";
 
@@ -6,6 +7,8 @@ import GetHoroscope from  "../src/services/GetHoroscope";
 function App() {
   const [sign, setSign] = useState(null);
   const myRef = useRef(null);
+  const[ allData, setallData] = useState(Array);
+  const [Loading, setLoading] = useState(true)
 
   
   const handleClick = (sign) => {
@@ -13,8 +16,32 @@ function App() {
     myRef.current.scrollIntoView({ behavior: 'smooth', block: 'start',  offset: { top: 10 } });
 
   };
-  
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+
+      try {
+        const response = await axios.get("https://gethoroscope.onrender.com/", {
+          mode: 'no-cors'
+        })
+        const jsonData = await response.data;
+        setallData(jsonData)
+        setLoading(false)
+        }
+
+     catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  });
+
+ if(Loading){
+  return(<div> Loading... </div>)
+ } 
+else{
   return (
     <div className="App">
       <div className="main"></div>
@@ -27,11 +54,11 @@ function App() {
       </div>
       
         <div ref={myRef}>
-          <GetHoroscope sign ={sign}/>
+          <GetHoroscope sign = {sign} allData = {allData}/>
         </div>
       
     </div>
   );
-}
+}}
 
 export default App;
