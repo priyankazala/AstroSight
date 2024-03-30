@@ -4,18 +4,24 @@ import ('./GetHoroscope.css')
 
 const GetHoroscope = ({ sign, allData}) => {
     const [horoscopeData, setHoroscopeData] = useState(null);
+    const [Loading, setLoading] = useState(true)
+
     
   useEffect( ()=>{
-
+    
     allData.forEach(item => {
       const ss = item.sunsign;
       const hh = item.horoscope;
-      if (sign.toLowerCase() === ss.toLowerCase()){
-        setHoroscopeData(hh)
+      if (sign != null && sign.toLowerCase() === ss.toLowerCase()){
+        setHoroscopeData(hh);
+        setLoading(false);
       }});}
+
   , [sign, allData])
 
     return (
+      <div>
+         {Loading ? <div><h1>Loading.....</h1></div> : 
         <div className='container'>
             {horoscopeData && (
                 <div>
@@ -23,7 +29,9 @@ const GetHoroscope = ({ sign, allData}) => {
                   <p>{horoscopeData}</p> {/* Accessing horoscope text from response */}
                 </div>
             )}
-        </div>
+        </div>}
+      </div>
+     
     );
 };
 
