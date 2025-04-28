@@ -13,8 +13,8 @@ const GetHoroscope = ({ sign, allData }) => {
     }
     setLoading(true);
 
-    found = allData.find(
-      (item) => item.sunsign.toLowerCase() == sign.toLowerCase()
+    let found = allData.find(
+      (item) => item.sunsign.toLowerCase() === sign.toLowerCase()
     );
 
     if (found) {

@@ -1,22 +1,25 @@
 .App {
   display: 100vh;
   text-align: center;
- 
 }
-.button-div{
+.button-div {
   justify-content: center;
   display: flex;
   flex-direction: row;
   gap: 10px;
   padding: 10px;
 }
-.key-button{
+.key-button {
   font-family: Monolisa;
   font-size: 20px;
-  background: linear-gradient(90deg, rgba(129,230,217,1) 0%, rgba(79,209,197,1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(129, 230, 217, 1) 0%,
+    rgba(79, 209, 197, 1) 100%
+  );
   border: none;
   border-radius: 10px;
-  box-shadow: 5px 5px 10px rgba(79,209,197,.64);
+  box-shadow: 5px 5px 10px rgba(79, 209, 197, 0.64);
   transition: all 0.3s ease-in-out 0s;
   cursor: pointer;
   outline: none;
@@ -24,36 +27,38 @@
   padding: 10px;
 }
 
-
 key-button::before {
-  content: '';
-    border-radius: 10px;
-    min-width: calc(300px + 12px);
-    min-height: calc(60px + 12px);
-    border: 6px solid #00FFCB;
-    box-shadow: 0 0 20px rgba(0,255,203,.40);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: all .3s ease-in-out 0s;
-  }
-  
-  .key-button:hover, .key-button:focus {
-    color: #313133;
-    transform: translateY(-6px);
-  }
-  
-  key-button:hover::before, key-button:focus::before {
-    opacity: 1;
-  }
+  content: "";
+  border-radius: 10px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #00ffcb;
+  box-shadow: 0 0 20px rgba(0, 255, 203, 0.4);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.key-button:hover,
+.key-button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+key-button:hover::before,
+key-button:focus::before {
+  opacity: 1;
+}
 
 key-button::after {
-  content: '';
-  width: 30px; height: 30px;
+  content: "";
+  width: 30px;
+  height: 30px;
   border-radius: 100%;
-  border: 6px solid #00FFCB;
+  border: 6px solid #00ffcb;
   position: absolute;
   z-index: -1;
   top: 50%;
@@ -62,11 +67,11 @@ key-button::after {
   animation: ring 1.5s infinite;
 }
 
-key-button:hover::after, key-button:focus::after {
+key-button:hover::after,
+key-button:focus::after {
   animation: none;
   display: none;
 }
-
 
 @keyframes ring {
   0% {
@@ -81,45 +86,77 @@ key-button:hover::after, key-button:focus::after {
   }
 }
 
-h1{
+h1 {
   font-size: 64px;
   font-family: Monolisa;
 }
-h2{
+h2 {
   font-size: 48px;
   font-family: Monolisa;
 }
-h3{
+h3 {
   font-family: Monolisa;
-    font-size: 30px;
+  font-size: 30px;
 }
 
 @media screen and (max-width: 768px) {
-  .button-div{
+  .button-div {
     font-size: 12px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    
   }
 
-  .key-button{
+  .key-button {
     font-size: 18px;
-    
   }
 
-  h1{
+  h1 {
     font-size: 36px;
-    
   }
-  h2{
+  h2 {
     font-size: 24px;
-    
   }
-  h3{
-  
-      font-size: 12px;
+  h3 {
+    font-size: 12px;
   }
-  
+}
+
+/* From Uiverse.io by Shoh2008 */
+.loader {
+  display: flex;
+  justify-content: center;
+  width: 84px;
+  height: 84px;
+  position: relative;
+}
+
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -100%) scale(0);
+  animation: push_401 2s infinite linear;
+}
+
+.loader:after {
+  animation-delay: 1s;
+}
+
+@keyframes push_401 {
+  0%,
+  50% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -100%) scale(0);
+  }
 }

@@ -58,7 +58,9 @@ function App() {
         seconds when you first load. Thanks for your patience!
       </p>
       {loading ? (
-        <p>Loading your horoscopes...</p>
+        <div>
+          <h1>Asking the Stars</h1>
+        </div>
       ) : (
         <>
           <div className="button-div">
