@@ -1,38 +1,50 @@
-import React, { useEffect, useState } from 'react';
-import ('./GetHoroscope.css')
+import React, { useEffect, useState } from "react";
+import "./GetHoroscope.css";
 
+const GetHoroscope = ({ sign, allData }) => {
+  const [horoscopeData, setHoroscopeData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const GetHoroscope = ({ sign, allData}) => {
-    const [horoscopeData, setHoroscopeData] = useState(null);
-    const [Loading, setLoading] = useState(true)
+  useEffect(() => {
+    if (!sign) {
+      setHoroscopeData(null);
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
 
-    
-  useEffect( ()=>{
-    
-    allData.forEach(item => {
-      const ss = item.sunsign;
-      const hh = item.horoscope;
-      if (sign != null && sign.toLowerCase() === ss.toLowerCase()){
-        setHoroscopeData(hh);
-        setLoading(false);
-      }});}
-
-  , [sign, allData])
-
-    return (
-      <div>
-         {Loading ? <div><h1>Loading.....</h1></div> : 
-        <div className='container'>
-            {horoscopeData && (
-                <div>
-                  <h3>Horoscope for {sign}</h3>
-                  <p>{horoscopeData}</p> {/* Accessing horoscope text from response */}
-                </div>
-            )}
-        </div>}
-      </div>
-     
+    found = allData.find(
+      (item) => item.sunsign.toLowerCase() == sign.toLowerCase()
     );
+
+    if (found) {
+      setHoroscopeData(found.horoscope);
+    } else {
+      setHoroscopeData(null);
+    }
+    setLoading(false);
+  }, [sign, allData]);
+
+  return (
+    <div>
+      {loading ? (
+        <div>
+          <h1>Asking the Stars</h1>
+          <span class="loader"></span>
+        </div>
+      ) : (
+        <div className="container">
+          {!sign && <h2>Please select your zodiac sign!</h2>}
+          {horoscopeData && (
+            <div>
+              <h3>Horoscope for {sign}</h3>
+              <p>{horoscopeData}</p>{" "}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default GetHoroscope;

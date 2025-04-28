@@ -1,28 +1,62 @@
-.container{
-    padding: 20px;
-    margin: 10vh 10vw;
-    border: 1px solid wheat;
+.container {
+  padding: 20px;
+  margin: 10vh 10vw;
+  border: 1px solid wheat;
 }
 
-p{
-    padding: 10px;
-    font-family: Monolisa;
-    font-size: 30px;
+p {
+  padding: 10px;
+  font-family: Monolisa;
+  font-size: 30px;
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    display: 100vw;
+    padding: 20px;
+    margin: 10vh 10vw;
+    border: 1px solid wheat;
+  }
+  p {
+    padding: 10px;
+    font-family: Monolisa;
+    font-size: 12px;
+  }
+}
 
-    .container{
-        display: 100vw;
-        padding: 20px;
-        margin: 10vh 10vw;
-        border: 1px solid wheat;
-    }
-    p{
-        padding: 10px;
-        font-family: Monolisa;
-        font-size: 12px;
-    }
-    
+/* From Uiverse.io by Shoh2008 */
+.loader {
+  display: block;
+  width: 84px;
+  height: 84px;
+  position: relative;
+}
 
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -100%) scale(0);
+  animation: push_401 2s infinite linear;
+}
+
+.loader:after {
+  animation-delay: 1s;
+}
+
+@keyframes push_401 {
+  0%,
+  50% {
+    transform: translate(-50%, 0%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -100%) scale(0);
+  }
 }
