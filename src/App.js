@@ -51,7 +51,6 @@ function App() {
     <div className="App">
       <div className="main"></div>
       <h1>Know Your Horoscope</h1>
-      <h2>Select Your Sign</h2>
       <p>
         Hey User! The server is hosted on a similar free hosting service which
         spins down when inactive. Hence there might be a delay of about 50

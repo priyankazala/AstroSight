@@ -30,7 +30,6 @@ const GetHoroscope = ({ sign, allData }) => {
       {loading ? (
         <div>
           <h1>Asking the Stars</h1>
-          <span class="loader"></span>
         </div>
       ) : (
         <div className="container">
